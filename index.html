@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<br><br><br><br><br>
+
+<a href="http://localhost/cgi-bin/script.cgi">CGI Perl Code Test</a>
+
+<br><br><br>
+
+<button id="testajax"  >Ajax Call</button>
+
+<p id="display">Display</p>
+
+<script type='text/javascript'>
+
+document.getElementById('testajax').onclick = function(){
+
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    
+    if (xhttp.readyState == 4) {
+   
+                  try{
+                      var jsonObj = JSON.parse(xhttp.responseText);
+                  }catch(err){
+                      alert(err.message);
+                  }
+
+                  document.getElementById("display").innerHTML = jsonObj.field;
+                  alert(jsonObj.field);
+            }
+
+    }
+
+  xhttp.open("GET", "http://localhost/cgi-bin/script.cgi?ajaxrequest='xx'", true);
+  xhttp.send();
+}
+
+
+
+
+
+</script>
+
+
+
+</body></html>
